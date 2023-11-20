@@ -39,18 +39,17 @@ setupIonicReact();
 
 const App: React.FC = () => (
   
-  <IonApp>
-    <IonReactRouter>
+  <IonApp style={{backgroundColor:"#ED8C2B"}}>
+    <IonReactRouter >
     
 
-      <IonRouterOutlet>
+      <IonRouterOutlet >
           <Route path="/singin">
               <Signin />
           </Route>
           <Route exact path="/">
             <Redirect to="/singin" />
           </Route>
-        </IonRouterOutlet>
 
       <IonTabs>
         <IonRouterOutlet>
@@ -68,18 +67,27 @@ const App: React.FC = () => (
         <IonTabBar slot="bottom">
           <IonTabButton tab="tab1" href="/tab1">
             <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+            <IonLabel>Tutoriales</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab3" href="/tab3">
             <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+            <IonLabel>Profesionales</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tab2" href="/tab2">
+            <IonIcon aria-hidden="true" icon={ellipse} />
+            <IonLabel>Novedades</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tab3" href="/tab3">
+            <IonIcon aria-hidden="true" icon={square} />
+            <IonLabel>Chat</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tab3" href="/tab3">
+            <IonIcon aria-hidden="true" icon={square} />
+            <IonLabel>Cuenta</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
+      </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
 );
