@@ -17,9 +17,13 @@ const Signin: React.FC = () => {
   useEffect(() => {
     console.log('ErrorMsg actualizado:', errorMsg);
   }, [errorMsg]); // Se ejecutará cada vez que errorMsg cambie
-
-  const handleLogin = () => {  
+  useEffect(() => {
+    console.log('Username:', username);
+    console.log('Password:', password);
+  }, [username, password]);
+  const handleLogin = (e: React.MouseEvent<HTMLIonButtonElement, MouseEvent>) => {  
     // Aquí puedes agregar la lógica de autenticación
+    e.preventDefault();
     console.log('Username:', username);
     console.log('Password:', password);  
     axios.post('http://localhost:8080/auth', { 'usr':username, 'pwd':password })
@@ -32,13 +36,10 @@ const Signin: React.FC = () => {
       })
       .catch((err) => {
         console.log('Error:', err.response.data.mensaje);
-        setErrorMsg(err.response.data.message);
+        setErrorMsg( err.response.data.mensaje);
+        //setErrorMsg(err.response.data.message);
       });
 
-
-
-    // Agrega la lógica de autenticación aquí 
-   // history.push('/tab2');
 
   };
 
