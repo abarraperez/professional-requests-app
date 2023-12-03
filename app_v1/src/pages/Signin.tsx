@@ -1,25 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect  } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonButton, IonRow, IonCol, IonIcon, IonImg  } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import { personCircle, push } from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 import './Signin.css';
 
 const Signin: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('null');
+
   const history = useHistory();
+
+  useEffect(() => {
+    console.log('ErrorMsg actualizado:', errorMsg);
+  }, [errorMsg]); // Se ejecutará cada vez que errorMsg cambie
+
   const handleLogin = () => {  
-
-     
-
     // Aquí puedes agregar la lógica de autenticación
     console.log('Username:', username);
     console.log('Password:', password);  
+    axios.post('http://localhost:8080/auth', { 'usr':username, 'pwd':password })
+      .then((res) => {
+        console.log('Respuesta del servidor:', res.data);
+        // Guarda el token en el local storage
+        localStorage.setItem('token', res.data.token);
+        // Redirecciona a la página de tab2
+        history.push('/tab2');
+      })
+      .catch((err) => {
+        console.log('Error:', err.response.data.mensaje);
+        setErrorMsg(err.response.data.message);
+      });
+
+
 
     // Agrega la lógica de autenticación aquí 
-    history.push('/tab2');
+   // history.push('/tab2');
 
   };
 
@@ -79,6 +98,8 @@ const Signin: React.FC = () => {
                 <IonButton expand="full" onClick={handleLogin} color="warning" style={{background:"#ED8C2B", color: "#fff" }}>
                     Iniciar sesión
                 </IonButton>
+                { <p style={{ color: 'red' }}>{errorMsg}</p>}
+
                 <p style={{ fontSize: "medium", marginLeft: "20%"  }}>
                     No tienes una cuenta? <a href="#">Registrate!</a>
                 </p>
