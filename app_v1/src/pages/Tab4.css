@@ -1,0 +1,13 @@
+IonItem h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  IonItem p {
+    margin: 4px 0;
+  }
+  
+  IonBadge {
+    margin-left: 8px;
+    font-size: 0.8rem;
+  }

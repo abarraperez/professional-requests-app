@@ -1,0 +1,16 @@
+.event-item {
+    border-left: 4px solid transparent;
+    padding: 12px;
+  }
+  
+  .own-event {
+    border-left-color: #4caf50; /* Verde para eventos propios */
+  }
+  
+  .assigned-event {
+    border-left-color: #2196f3; /* Azul para eventos asignados */
+  }
+  
+  .create-event-button {
+    margin: 16px;
+  }
